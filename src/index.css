@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS variables */
+:root {
+  --font-sans: 'Nunito', sans-serif;
+  --font-serif: 'Caveat', cursive;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-pink: #ff69b4;
+  --color-green-meadow: linear-gradient(135deg, #a8e6cf, #dcedc1);
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* Improve touch responsiveness on interactive elements */
+button,
+.black-hole {
+  touch-action: manipulation;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
