@@ -4,15 +4,12 @@ import './SceneSeven.css';
 
 export default function SceneSeven({ onClose }) {
   return (
-    <>
-      {/* Backdrop */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-      />
-      {/* Modal Content */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+    >
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -31,6 +28,6 @@ export default function SceneSeven({ onClose }) {
           </button>
         </div>
       </motion.div>
-    </>
+    </motion.div>
   );
 }

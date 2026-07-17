@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import Butterfly from './Butterfly';
 import SceneSeven from './SceneSeven';
@@ -78,7 +78,7 @@ export default function SceneSix({ onAdvance }) {
         onClick={handleOpenModal}
       >
         {/* Caption near the black hole */}
-        <span className="black-hole-caption-hole-caption">
+        <span className="black-hole-caption">
           anga paaren corner la antha black iruku paaren ipo touch pannen atha
         </span>
       </div>
@@ -110,9 +110,11 @@ export default function SceneSix({ onAdvance }) {
       )}
 
       {/* Modal */}
-      {modalOpen && (
-        <SceneSeven onClose={handleCloseModal} />
-      )}
+      <AnimatePresence>
+        {modalOpen && (
+          <SceneSeven onClose={handleCloseModal} />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
