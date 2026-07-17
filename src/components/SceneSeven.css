@@ -1,2 +1,38 @@
-/* We can keep it simple, maybe no custom CSS needed beyond what's in the JSX */
-/* But we'll create the file for consistency */
+.modal-card {
+  width: 100%;
+  max-width: 28rem;
+  padding: 2rem 1.75rem;
+  background: linear-gradient(160deg, #ffffff, #fff5f8);
+  border: 2px solid #ffd0dd;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(120, 40, 70, 0.35);
+  text-align: center;
+}
+
+.modal-text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.2rem, 4.6vw, 1.5rem);
+  line-height: 1.55;
+  color: #4a2f38;
+}
+
+.modal-button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: #fff;
+  background: linear-gradient(135deg, #ff7eb3, #ff5c8a);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(255, 92, 138, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.modal-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 92, 138, 0.55);
+}
+.modal-button:active {
+  transform: translateY(0);
+}

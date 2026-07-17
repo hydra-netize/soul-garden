@@ -2,60 +2,94 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-  width: 35px;
-  height: 35px;
-  background: radial-gradient(circle at center, #000 0%, rgba(0,0,0,0.7) 70%, transparent);
+  width: 44px;
+  height: 44px;
+  background:
+    radial-gradient(circle at 42% 38%, #000 0%, #000 70%, #050505 100%);
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.18), 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 0 8px rgba(0, 0, 0, 0.95);
+  animation: hole-pulse 2.2s ease-in-out infinite;
+}
+.black-hole::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px dashed rgba(120, 60, 160, 0.4);
+  animation: hole-spin 8s linear infinite;
+}
+
+@keyframes hole-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(0,0,0,0.08), 0 0 22px 4px rgba(60,0,80,0.35); }
+  50%      { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(0,0,0,0.06), 0 0 30px 6px rgba(90,0,120,0.5); }
+}
+@keyframes hole-spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Caption near the black hole */
 .black-hole-caption {
   position: absolute;
-  bottom: 60px; /* above the black hole */
-  right: 20px;
-  background: rgba(0,0,0,0.5);
+  bottom: 56px; /* above the black hole */
+  right: 0;
+  background: rgba(0,0,0,0.55);
   color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  line-height: 1.3;
+  width: max-content;
+  max-width: 56vw;
+  white-space: normal;
+  text-align: right;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
-/* Flower Box */
+/* Flower Box — centred, larger, and safely scrollable on small screens */
 .flower-box {
-  position: absolute;
-  background: rgba(255,255,255,0.9);
-  border: 3px solid #ffb6c1; /* pink border */
-  border-radius: 20px;
-  padding: 2rem;
-  width: 80%;
-  max-width: 400px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(160deg, rgba(255,255,255,0.96), rgba(255,240,246,0.96));
+  border: 4px solid #ffb6c1; /* pink border */
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  width: min(520px, 90vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  box-shadow: 0 22px 55px rgba(214, 120, 150, 0.32), inset 0 0 0 1px rgba(255,255,255,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 10;
 }
 
 /* Flower decorations */
 .flower {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 36px;
+  height: 36px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff69b4" d="M50,10 L55,25 L70,25 L58,32 L62,47 L50,38 L38,47 L42,32 L30,25 L45,25 Z"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .flower.top-right {
-  top: -12px;
-  right: -12px;
+  top: -16px;
+  right: -16px;
 }
 .flower.bottom-left {
-  bottom: -12px;
-  left: -12px;
+  bottom: -16px;
+  left: -16px;
 }
 
 .box-text {
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #333;
-  margin: 1.5rem 0;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.3rem, 5vw, 1.7rem);
+  line-height: 1.6;
+  color: #5a3a45;
+  margin: 1.5rem 0 0.5rem;
+  text-align: center;
 }
 
 .box-butterflies {
@@ -66,4 +100,30 @@
   display: flex;
   justify-content: space-between;
   width: 40px;
+}
+
+/* Grassy ground shared with the meadow scenes */
+.scene-six-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(180deg, rgba(120, 200, 130, 0) 0%, #7ec87e 45%, #5bb063 100%);
+  pointer-events: none;
+}
+.scene-six-flower {
+  position: absolute;
+  bottom: 34px;
+  width: 12px;
+  height: 12px;
+  background:
+    radial-gradient(circle at 50% 50%, #ffe36e 0 3px, transparent 4px),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="%23ff8fb1"><circle cx="50" cy="22" r="16"/><circle cx="78" cy="50" r="16"/><circle cx="50" cy="78" r="16"/><circle cx="22" cy="50" r="16"/></g></svg>') center/contain no-repeat;
+  transform-origin: bottom center;
+  animation: flower-sway 3s ease-in-out infinite;
+}
+@keyframes flower-sway {
+  0%, 100% { transform: rotate(-6deg); }
+  50%      { transform: rotate(6deg); }
 }

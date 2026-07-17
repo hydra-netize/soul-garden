@@ -15,4 +15,31 @@
   50% { opacity: 0.6; }
 }
 
-/* We can also add animation for butterflies to drift slowly towards center if desired, but we'll keep it simple */
+.final-heart {
+  margin-top: 0.75rem;
+  font-size: 2rem;
+  animation: heart-beat 2.4s ease-in-out infinite;
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }
+}
+
+/* Deep, dark dot resting in the corner of the final scene */
+.final-black-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, #000 0%, #000 72%, #050505 100%);
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.2),
+    0 6px 18px rgba(0, 0, 0, 0.6),
+    inset 0 0 9px rgba(0, 0, 0, 1);
+  animation: dot-breathe-dark 3s ease-in-out infinite;
+}
+
+@keyframes dot-breathe-dark {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}

@@ -1,0 +1,30 @@
+.mountains {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 70px; /* sit just above the grass band */
+  height: min(38vh, 300px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mountains-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.range-far {
+  fill: #9db7cf;
+  opacity: 0.55;
+}
+
+.range-near {
+  fill: #7fa07e;
+  opacity: 0.85;
+}
+
+.snow {
+  fill: #ffffff;
+  opacity: 0.9;
+}

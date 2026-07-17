@@ -6,58 +6,38 @@ import SceneThree from './components/SceneThree';
 import SceneFour from './components/SceneFour';
 import SceneFive from './components/SceneFive';
 import SceneSix from './components/SceneSix';
-import SceneSeven from './components/SceneSeven';
 import SceneEight from './components/SceneEight';
 
+// Explicit, ordered list of scene keys. Using an ordered array (instead of a
+// bare numeric switch) makes advancing robust and removes off-by-one / missing
+// case bugs. Note: Scene 6 embeds Scene 7 (the modal) itself and, once the modal
+// is closed, advances the flow. That advance is intentionally treated as landing
+// on the final closing scene (Scene 8) rather than rendering a standalone Scene 7.
+const SCENES = [
+  { key: 'one', Component: SceneOne, propName: 'onComplete' },
+  { key: 'two', Component: SceneTwo, propName: 'onComplete' },
+  { key: 'three', Component: SceneThree, propName: 'onComplete' },
+  { key: 'four', Component: SceneFour, propName: 'onComplete' },
+  { key: 'five', Component: SceneFive, propName: 'onComplete' },
+  { key: 'six', Component: SceneSix, propName: 'onAdvance' },
+  // Scene 6's modal-close transition (previously the missing "case 7") lands here.
+  { key: 'eight', Component: SceneEight, propName: null },
+];
+
 export default function App() {
-  const [scene, setScene] = useState(1);
+  const [index, setIndex] = useState(0);
 
   const handleNext = () => {
-    setScene(prev => prev + 1);
+    setIndex(prev => Math.min(prev + 1, SCENES.length - 1));
   };
 
-  // Determine which component and which props to pass based on scene
-  let Component;
-  let props = {};
-
-  switch (scene) {
-    case 1:
-      Component = SceneOne;
-      props = { onComplete: handleNext };
-      break;
-    case 2:
-      Component = SceneTwo;
-      props = { onComplete: handleNext };
-      break;
-    case 3:
-      Component = SceneThree;
-      props = { onComplete: handleNext };
-      break;
-    case 4:
-      Component = SceneFour;
-      props = { onComplete: handleNext };
-      break;
-    case 5:
-      Component = SceneFive;
-      props = { onComplete: handleNext };
-      break;
-    case 6:
-      Component = SceneSix;
-      props = { onAdvance: handleNext };
-      break;
-    case 8:
-      Component = SceneEight;
-      props = {};
-      break;
-    default:
-      Component = SceneOne;
-      props = { onComplete: handleNext };
-  }
+  const { key, Component, propName } = SCENES[index];
+  const props = propName ? { [propName]: handleNext } : {};
 
   return (
     <div className="app">
       <AnimatePresence mode="wait">
-        <Component key={scene} {...props} />
+        <Component key={key} {...props} />
       </AnimatePresence>
     </div>
   );

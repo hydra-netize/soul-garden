@@ -14,14 +14,14 @@ export default function SceneSeven({ onClose }) {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
-        className="p-4"
+        className="p-4 w-full flex justify-center"
       >
-        <div className="bg-white text-black p-8 rounded-lg w-full max-w-md relative">
+        <div className="modal-card relative">
           <div className="modal-text">
             {modalMessage}
           </div>
           <button
-            className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 focus:outline-none"
+            className="modal-button"
             onClick={onClose}
           >
             seri seri podhum click here
